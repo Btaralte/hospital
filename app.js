@@ -6,6 +6,9 @@ const app = express();
 app.get('/',async (req,res) => {
     let lat = Number(req.query.lat);
     let lng = Number(req.query.lng);
+    if(!lat && !lng){
+        res.json({message:"No query parameters provided"});
+    }
     let Data;
     let resp_d = [];
     await axios.get('https://apitest2.smartsevak.com/places').then((response) => {
